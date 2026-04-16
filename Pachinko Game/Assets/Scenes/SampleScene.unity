@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 1943216643}
   - component: {fileID: 1943216642}
   - component: {fileID: 1943216644}
+  - component: {fileID: 1943216645}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -446,6 +447,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovementScript
   movementSpeed: 5
   velocity: {x: 0, y: 0}
+--- !u!114 &1943216645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943216641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f26e59861add864cbbb6cdf6dfe4bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
+  ballPrefab: {fileID: 2912162976374482310, guid: 9df0290919f854044ac07afac4ec7460, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
