@@ -1,16 +1,16 @@
+using TMPro;
 using UnityEngine;
 
 public class ScoreHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    // will fetch this info from here to display it elsewhere   
+    [SerializeField]
+    public TMP_Text scoreText;
+    private int score = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void AddPoint()
     {
-        
+        score++;
+        scoreText.text = "Score: " + score;
     }
 }

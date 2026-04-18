@@ -1,0 +1,23 @@
+using UnityEngine;
+
+public class ScoringScript : MonoBehaviour
+{
+
+    private ScoreHandler _scoreHandler;
+
+    void Start()
+    {
+        //first set up the score manager    
+        _scoreHandler = FindAnyObjectByType<ScoreHandler>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ball"))
+        {
+            _scoreHandler.AddPoint();
+        }
+    }
+
+
+}
