@@ -1,22 +1,32 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField]
-    public float movementSpeed = 5f;
-    public Vector2 velocity;
+    private float movementSpeed = 5f;
+    private Vector2 velocity;
+
+    [SerializeField] public int movementCooldown = 0;
+
+
 
     void Update()
     {
         float x = 0;
+        if (movementCooldown > 0)
+        {
+            movementCooldown--;
 
-        if (Keyboard.current.aKey.isPressed && transform.position.x > -8)
+        }
+
+        if (Keyboard.current.aKey.isPressed && transform.position.x > -8 && movementCooldown == 0)
         {
             x = -1;
         }
-        if (Keyboard.current.dKey.isPressed && transform.position.x < 8)
+        if (Keyboard.current.dKey.isPressed && transform.position.x < 8 && movementCooldown == 0)
         {
             x = 1;
         }
