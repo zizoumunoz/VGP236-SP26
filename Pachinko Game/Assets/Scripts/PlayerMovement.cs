@@ -16,6 +16,7 @@ public class PlayerMovementScript : MonoBehaviour
     void Update()
     {
         float x = 0;
+        float y = 0;
         if (movementCooldown > 0)
         {
             movementCooldown--;
@@ -31,7 +32,17 @@ public class PlayerMovementScript : MonoBehaviour
             x = 1;
         }
 
-        velocity = new Vector2(x * movementSpeed, 0);
+        // up down movement
+        if (Keyboard.current.wKey.isPressed && transform.position.y < 5 && movementCooldown == 0)
+        {
+            y = 1;
+        }
+        if (Keyboard.current.sKey.isPressed && transform.position.y > 3 && movementCooldown == 0)
+        {
+            y = -1;
+        }
+
+        velocity = new Vector2(x * movementSpeed, y * movementSpeed);
         transform.position += (Vector3)(velocity * Time.deltaTime); // REMEMBER TO USE DELTA TIME SO MOVEMENT ISNT FRAME TIED!!
 
 
