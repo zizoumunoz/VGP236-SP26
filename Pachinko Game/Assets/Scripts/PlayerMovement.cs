@@ -10,6 +10,11 @@ public class PlayerMovementScript : MonoBehaviour
     private Vector2 velocity;
 
     [SerializeField] public int movementCooldown = 0;
+    [SerializeField] private int _xMax = -8;
+    [SerializeField] private int _xMin = 8;
+
+    [SerializeField] private int _yMax = 5;
+    [SerializeField] private int _yMin = 2;
 
 
 
@@ -23,21 +28,21 @@ public class PlayerMovementScript : MonoBehaviour
 
         }
 
-        if (Keyboard.current.aKey.isPressed && transform.position.x > -8 && movementCooldown == 0)
+        if (Keyboard.current.aKey.isPressed && transform.position.x > _xMax && movementCooldown == 0)
         {
             x = -1;
         }
-        if (Keyboard.current.dKey.isPressed && transform.position.x < 8 && movementCooldown == 0)
+        if (Keyboard.current.dKey.isPressed && transform.position.x < _xMin && movementCooldown == 0)
         {
             x = 1;
         }
 
         // up down movement
-        if (Keyboard.current.wKey.isPressed && transform.position.y < 5 && movementCooldown == 0)
+        if (Keyboard.current.wKey.isPressed && transform.position.y < _yMax && movementCooldown == 0)
         {
             y = 1;
         }
-        if (Keyboard.current.sKey.isPressed && transform.position.y > 3 && movementCooldown == 0)
+        if (Keyboard.current.sKey.isPressed && transform.position.y > _yMin && movementCooldown == 0)
         {
             y = -1;
         }
