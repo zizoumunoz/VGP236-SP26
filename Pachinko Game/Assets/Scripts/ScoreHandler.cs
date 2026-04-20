@@ -8,9 +8,9 @@ public class ScoreHandler : MonoBehaviour
     public TMP_Text scoreText;
     private int score = 0;
 
-    public void AddPoint()
+    public void AddPoint(int amount)
     {
-        score++;
+        score += amount;
         scoreText.text = "Score: " + score;
     }
 }

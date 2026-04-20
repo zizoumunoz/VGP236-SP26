@@ -4,6 +4,10 @@ public class BallDespawn : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.CompareTag("Goal"))
+        {
+            Destroy(gameObject);
+
+        }
     }
 }

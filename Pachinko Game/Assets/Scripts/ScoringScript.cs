@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class ScoringScript : MonoBehaviour
 {
 
     private ScoreHandler _scoreHandler;
-
+    [SerializeField] int _scoreAmount = 0;
     void Start()
     {
         //first set up the score manager    
@@ -15,7 +16,7 @@ public class ScoringScript : MonoBehaviour
     {
         if (collision.CompareTag("Ball"))
         {
-            _scoreHandler.AddPoint();
+            _scoreHandler.AddPoint(_scoreAmount);
         }
     }
 
