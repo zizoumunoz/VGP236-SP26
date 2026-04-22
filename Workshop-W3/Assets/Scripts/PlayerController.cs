@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 10.0f;
-    [SerializeField] private float _jumpSpeed = 30.0f;
+    [SerializeField] private GroundCheck _groundCheck = null;
+    [SerializeField] private float _moveSpeed = 8.0f;
+    [SerializeField] private float _jumpSpeed = 5.0f;
     private Rigidbody2D _rigidBody = null;
     private float _desiredHorizontalMoveSpeed = 0;
 
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
         _playerInput = new PlayerInput();
         _moveAction = _playerInput.Player.Move;
         _jumpAction = _playerInput.Player.Jump;
+        _jumpAction.performed += OnJump; // when jump action, it will call the function we made called OnJump
     }
 
     private void OnEnable()
@@ -43,5 +45,14 @@ public class PlayerController : MonoBehaviour
     {
         _rigidBody.linearVelocityX = _desiredHorizontalMoveSpeed;
 
+    }
+
+    private void OnJump(InputAction.CallbackContext context)
+    {
+        if (_groundCheck.IsGrounded && _rigidBody.linearVelocityY < 0.1f)
+        {
+            _rigidBody.linearVelocityY = _jumpSpeed;
+
+        }
     }
 }
