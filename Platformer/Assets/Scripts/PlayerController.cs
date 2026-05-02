@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // animating stuff
     [SerializeField] private Animator _animator;
+    [SerializeField] private GroundCheck _groundCheck; // for the ground check script
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
 
@@ -48,6 +49,8 @@ public class PlayerController : MonoBehaviour
         _targetMoveSpeed = _moveAction.ReadValue<Vector2>().x * _movementSpeed;
         // set the animators speed param so blend trees can use it
         _animator.SetFloat("Speed", Mathf.Abs(_targetMoveSpeed));
+        _animator.SetFloat("SpeedY", _rigidBody.linearVelocityY);
+        _animator.SetBool("Grounded", _groundCheck.IsGrounded);
         if (_targetMoveSpeed > 0.1f)
         {
             _spriteRenderer.flipX = false; // don't flip whatever sprite is playing when the speed is going right
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
-        Debug.Log(_targetMoveSpeed);
+        Debug.Log("Target Move Speed: "+_targetMoveSpeed);
 
     }
 
