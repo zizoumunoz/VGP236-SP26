@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca40d52381462844a535b40036a265c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _animator: {fileID: 2541923575986418425}
+  _spriteRenderer: {fileID: 3226807016477087674}
   _movementSpeed: 5
   _jumpSpeed: 5
 --- !u!212 &3226807016477087674

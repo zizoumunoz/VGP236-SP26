@@ -4,6 +4,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    // animating stuff
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
+
     // because its a platformer, not vertical movement, just jump movement
     [SerializeField] float _movementSpeed;
     [SerializeField] float _jumpSpeed;
@@ -41,6 +46,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _targetMoveSpeed = _moveAction.ReadValue<Vector2>().x * _movementSpeed;
+        // set the animators speed param so blend trees can use it
+        _animator.SetFloat("Speed", Mathf.Abs(_targetMoveSpeed));
+        if (_targetMoveSpeed > 0.1f)
+        {
+            _spriteRenderer.flipX = false; // don't flip whatever sprite is playing when the speed is going right
+        }
+        else if (_targetMoveSpeed < -0.1f)
+        {
+            _spriteRenderer.flipX = true;
+        }
+
+        Debug.Log(_targetMoveSpeed);
+
     }
 
     // Like Update() but not frame based, for physics
