@@ -226,7 +226,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.35
+  orthographic size: 5.98
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 2
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -858,7 +858,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 4.35
+    OrthographicSize: 5.98
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -952,7 +952,7 @@ MonoBehaviour:
   m_RefResolutionX: 1920
   m_RefResolutionY: 1080
   m_CropFrame: 0
-  m_GridSnapping: 1
+  m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -1126,6 +1126,10 @@ PrefabInstance:
     - target: {fileID: 278927386309564935, guid: e9e1cfc42b305b445be58002a21c7897, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3226807016477087674, guid: e9e1cfc42b305b445be58002a21c7897, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8974889154371075858, guid: e9e1cfc42b305b445be58002a21c7897, type: 3}
       propertyPath: m_Name
