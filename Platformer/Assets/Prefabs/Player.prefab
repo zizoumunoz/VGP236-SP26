@@ -81,6 +81,7 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 3226807016477087674}
   _movementSpeed: 5
   _jumpSpeed: 8
+  _coyoteTime: 2
 --- !u!212 &3226807016477087674
 SpriteRenderer:
   serializedVersion: 2

@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidBody = null;
     private float _targetMoveSpeed = 0;
 
+    [SerializeField] float _coyoteTime = 0.1f;
+    private float _coyoteCounter = 0;
+
     // player input hookups
     private PlayerInput _playerInput = null;
     private InputAction _moveAction = null;
@@ -51,6 +54,17 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("Speed", Mathf.Abs(_targetMoveSpeed));
         _animator.SetFloat("SpeedY", _rigidBody.linearVelocityY);
         _animator.SetBool("Grounded", _groundCheck.IsGrounded);
+
+        // coyote time logic
+        if (_groundCheck.IsGrounded)
+        {
+            _coyoteCounter = _coyoteTime;
+        }
+        else
+        {
+            _coyoteCounter -= Time.deltaTime;
+        }
+
         if (_targetMoveSpeed > 0.1f)
         {
             _spriteRenderer.flipX = false; // don't flip whatever sprite is playing when the speed is going right
@@ -73,9 +87,10 @@ public class PlayerController : MonoBehaviour
     void OnJump(InputAction.CallbackContext context)
     {
 
-        if (_groundCheck.IsGrounded)
+        if (context.performed && _coyoteCounter > 0f)
         {
             _rigidBody.linearVelocityY = _jumpSpeed;
+            _coyoteCounter = 0f;
         }
     }
 
