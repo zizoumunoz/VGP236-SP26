@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
-        Debug.Log("Target Move Speed: "+_targetMoveSpeed);
+        Debug.Log("Target Move Speed: " + _targetMoveSpeed);
 
     }
 
@@ -72,7 +72,11 @@ public class PlayerController : MonoBehaviour
 
     void OnJump(InputAction.CallbackContext context)
     {
-        _rigidBody.linearVelocityY = _jumpSpeed;
+
+        if (_groundCheck.IsGrounded)
+        {
+            _rigidBody.linearVelocityY = _jumpSpeed;
+        }
     }
 
 }
