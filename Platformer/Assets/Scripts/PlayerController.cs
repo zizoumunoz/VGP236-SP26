@@ -1,9 +1,12 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    private enum PlayerType { Player1, Player2 }
+    [SerializeField] private PlayerType playerType;
+
+
     // animating stuff
     [SerializeField] private Animator _animator;
     [SerializeField] private GroundCheck _groundCheck; // for the ground check script
@@ -19,37 +22,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _coyoteTime = 0.1f;
     private float _coyoteCounter = 0;
 
-    // player input hookups
-    private PlayerInput _playerInput = null;
-    private InputAction _moveAction = null;
-    private InputAction _jumpAction = null;
+
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();   // get rigid body attached to this script's object
-        _playerInput = new PlayerInput();
-        _moveAction = _playerInput.Player.Move;
-        _jumpAction = _playerInput.Player.Jump;
 
-        // when jumpAction is performed, call the OnJump() function. .performed is an event
-        _jumpAction.performed += OnJump;
     }
 
-    private void OnEnable()
-    {
-        _moveAction.Enable();
-        _jumpAction.Enable();
-    }
 
-    private void OnDisable()
-    {
-        _moveAction.Disable();
-        _jumpAction.Disable();
-    }
 
     void Update()
     {
-        _targetMoveSpeed = _moveAction.ReadValue<Vector2>().x * _movementSpeed;
+        _targetMoveSpeed = GetHorizontalInput() * _movementSpeed;
         // set the animators speed param so blend trees can use it
         _animator.SetFloat("Speed", Mathf.Abs(_targetMoveSpeed));
         _animator.SetFloat("SpeedY", _rigidBody.linearVelocityY);
@@ -74,8 +59,11 @@ public class PlayerController : MonoBehaviour
             _spriteRenderer.flipX = true;
         }
 
-        Debug.Log("Target Move Speed: " + _targetMoveSpeed);
-
+        if (GetJumpPressed() && _coyoteCounter > 0f)
+        {
+            _rigidBody.linearVelocityY = _jumpSpeed;
+            _coyoteCounter = 0f;
+        }
     }
 
     // Like Update() but not frame based, for physics
@@ -84,14 +72,35 @@ public class PlayerController : MonoBehaviour
         _rigidBody.linearVelocityX = _targetMoveSpeed;
     }
 
-    void OnJump(InputAction.CallbackContext context)
+    private float GetHorizontalInput()
     {
-
-        if (context.performed && _coyoteCounter > 0f)
+        if (playerType == PlayerType.Player1)
         {
-            _rigidBody.linearVelocityY = _jumpSpeed;
-            _coyoteCounter = 0f;
+            // WASD
+            float x = 0f;
+            if (Input.GetKey(KeyCode.D)) x += 1f;
+            if (Input.GetKey(KeyCode.A)) x -= 1f;
+            return x;
+        }
+        else
+        {
+            // Arrow keys
+            float x = 0f;
+            if (Input.GetKey(KeyCode.RightArrow)) x += 1f;
+            if (Input.GetKey(KeyCode.LeftArrow)) x -= 1f;
+            return x;
         }
     }
+
+    private bool GetJumpPressed()
+    {
+        if (playerType == PlayerType.Player1)
+            return Input.GetKeyDown(KeyCode.W); // or Space if you prefer
+
+        return Input.GetKeyDown(KeyCode.UpArrow); // or RightControl
+    }
+
+
+
 
 }

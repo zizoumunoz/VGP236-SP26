@@ -76,12 +76,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca40d52381462844a535b40036a265c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  playerType: 0
   _animator: {fileID: 2541923575986418425}
   _groundCheck: {fileID: 6785228130679863995}
   _spriteRenderer: {fileID: 3226807016477087674}
   _movementSpeed: 5
-  _jumpSpeed: 8
-  _coyoteTime: 0.05
+  _jumpSpeed: 10
+  _coyoteTime: 0.08
 --- !u!212 &3226807016477087674
 SpriteRenderer:
   serializedVersion: 2
