@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3226807016477087674}
   - component: {fileID: 2541923575986418425}
   - component: {fileID: 4556724750683498917}
+  - component: {fileID: 5077031996530191325}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -210,6 +211,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.85, y: 1.57}
   m_EdgeRadius: 0
+--- !u!114 &5077031996530191325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974889154371075858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f5e4995f12ec314a9f791d875fbae12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
+  _respawnPoint: {fileID: 0}
 --- !u!1 &9019097833310112175
 GameObject:
   m_ObjectHideFlags: 0
