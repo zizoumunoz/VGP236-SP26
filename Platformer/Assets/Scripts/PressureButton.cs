@@ -7,7 +7,7 @@ public class PressureButton : MonoBehaviour
 
     private int playersOnButton = 0;
     [SerializeField] private int playersNeeded = 1;
-
+    [SerializeField] private string _message = "Activate";
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -20,7 +20,7 @@ public class PressureButton : MonoBehaviour
                 if (animator != null)
                     animator.SetBool("Pressed", true);
 
-                targetObject.SendMessage("Activate", SendMessageOptions.DontRequireReceiver);
+                targetObject.SendMessage(_message, SendMessageOptions.DontRequireReceiver);
             }
         }
     }

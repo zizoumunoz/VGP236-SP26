@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8905501692486651692}
   - component: {fileID: 5088457236148496017}
   - component: {fileID: 1109881490034679830}
+  - component: {fileID: 7592861222002116781}
   m_Layer: 0
   m_Name: Small Button
   m_TagString: Untagged
@@ -190,6 +191,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7592861222002116781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3077476338401966934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8f7348be379ee4a9e181367cf054a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PressureButton
+  animator: {fileID: 1109881490034679830}
+  targetObject: {fileID: 0}
+  playersNeeded: 1
+  _message: Activate
 --- !u!1 &3542575390460813162
 GameObject:
   m_ObjectHideFlags: 0
