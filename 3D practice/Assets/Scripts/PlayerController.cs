@@ -32,9 +32,9 @@ public class PlayerController : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _playerInput = new PlayerInput();
         _moveAction = _playerInput.Player.Move;
+        _lookAction = _playerInput.Player.Look;
         _jumpAction = _playerInput.Player.Jump;
         _jumpAction.performed += OnJump;
-        _lookAction = _playerInput.Player.Look;
 
         // hide cursor /lock to screen, (press escto show cursor again to pause/quit)
 
