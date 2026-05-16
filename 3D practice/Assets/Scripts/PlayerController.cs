@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     private InputAction _lookAction = null;
     private Vector3 _moveVelocity = Vector3.zero;   // .zero in vectors gives you a vector of 0,0
     private Vector3 _moveRotation = Vector3.zero;
+    private Vector3 _lastGroundedPosition = Vector3.zero;
+
 
     private float _pitchRotation = 0.0f;
     private int _initalFrameSkip = 2;
@@ -85,6 +87,11 @@ public class PlayerController : MonoBehaviour
             lookInput.y *= -1.0f;
         }
         _pitchRotation = Mathf.Clamp(_pitchRotation + lookInput.y, _minPitchAngle, _maxPitchAngle);
+
+        if (_groundCheck.IsGrounded && _rigidBody.linearVelocity.y < 0.1f)
+        {
+            _lastGroundedPosition = transform.position;
+        }
     }
 
     private void FixedUpdate()
@@ -103,5 +110,12 @@ public class PlayerController : MonoBehaviour
             jumpVelocity.y = _jumpSpeed;
             _rigidBody.linearVelocity = jumpVelocity;
         }
+    }
+
+    public void Respawn()
+    {
+        _rigidBody.linearVelocity = Vector3.zero;
+        _lastGroundedPosition.y += 1.0f;
+        transform.position = _lastGroundedPosition;
     }
 }
